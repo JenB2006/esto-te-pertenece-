@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Esto te pertenece</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: "Georgia", serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(180deg, #f9c5d1, #f7a8b8);
+      overflow: hidden;
+    }
+
+    .corazon {
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.45);
+      transform: rotate(45deg);
+      animation: flotar 14s infinite ease-in;
+    }
+
+    .corazon::before,
+    .corazon::after {
+      content: "";
+      position: absolute;
+      width: 22px;
+      height: 22px;
+      background: rgba(255, 255, 255, 0.45);
+      border-radius: 50%;
+    }
+
+    .corazon::before { top: -11px; left: 0; }
+    .corazon::after { left: -11px; top: 0; }
+
+    @keyframes flotar {
+      from { transform: translateY(110vh) rotate(45deg); opacity: 0; }
+      to { transform: translateY(-10vh) rotate(45deg); opacity: 1; }
+    }
+
+    .sobre {
+      background: linear-gradient(180deg, #fff1f4, #ffe4ea);
+      padding: 50px;
+      border-radius: 18px;
+      box-shadow: 0 25px 55px rgba(0,0,0,0.35);
+      max-width: 560px;
+      text-align: center;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .cerrado h1 {
+      font-size: 22px;
+      color: #7a1f2b;
+    }
+
+    .contenido {
+      display: none;
+      animation: aparecer 1.3s ease;
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .para-ti {
+      font-size: 18px;
+      color: #7a1f2b;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    button {
+      background: #7a1f2b;
+      color: white;
+      border: none;
+      padding: 14px 42px;
+      font-size: 17px;
+      border-radius: 30px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #5f1821;
+    }
+
+    .texto {
+      margin-top: 32px;
+      font-size: 16px;
+      color: #3a3a3a;
+      line-height: 1.9;
+      text-align: left;
+    }
+
+    audio { display: none; }
+  </style>
+</head>
+<body>
+
+  <!-- corazones -->
+  <div class="corazon" style="left:8%; animation-delay:0s;"></div>
+  <div class="corazon" style="left:20%; animation-delay:3s;"></div>
+  <div class="corazon" style="left:35%; animation-delay:6s;"></div>
+  <div class="corazon" style="left:50%; animation-delay:1s;"></div>
+  <div class="corazon" style="left:65%; animation-delay:4s;"></div>
+  <div class="corazon" style="left:80%; animation-delay:2s;"></div>
+  <div class="corazon" style="left:92%; animation-delay:5s;"></div>
+
+  <div class="sobre" onclick="abrirCarta()">
+    <div class="cerrado">
+      <h1>Haz clic para abrir</h1>
+    </div>
+
+    <div class="contenido" id="contenido">
+      <div class="para-ti">Es para ti</div>
+
+      <button onclick="iniciar(event)">🎶 Escucha</button>
+
+      <div class="texto">
+        <p>
+          No escribo esto esperando una respuesta inmediata ni algo perfecto.
+          Solo quería decirte lo que muchas veces se me queda guardado.
+        </p>
+
+        <p>
+          El tiempo ha pasado rápido. Aun así, cada vez que nos vemos,
+          siento que todo se calma, como si el mundo bajara el volumen
+          por un momento.
+        </p>
+
+        <p>
+          Hay cosas que no siempre se dicen, no por falta de ganas,
+          sino porque a veces el momento no se siente claro.
+          Yo también me quedé con palabras a medio camino.
+        </p>
+
+        <p>
+          Hoy solo quiero creer que, aunque la vida nos lleve por rumbos distintos,
+          el hilo rojo no se rompa, y que en algún punto,
+          cuando tenga que ser, volvamos a encontrarnos.
+        </p>
+
+        <p>
+          con la tranquilidad de saber
+          que hay historias que no se cierran,
+          solo hacen pausas.
+        </p>
+
+        <p>
+                              Te dejo esta canción.
+        </p>
+      </div>
+    </div>
+
+    <audio id="musica">
+      <source src="segundos_platos.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script>
+    function abrirCarta() {
+      document.querySelector(".cerrado").style.display = "none";
+      document.getElementById("contenido").style.display = "block";
+    }
+
+    function iniciar(e) {
+      e.stopPropagation();
+      document.getElementById("musica").play();
+    }
+  </script>
+
+</body>
+</html>
+
+
